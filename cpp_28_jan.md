@@ -55,5 +55,62 @@ int main()
 }
 ```
 
+# Print array elements at even index positions
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "Elements at even index positions:\n";
+    for (int i = 0; i < n; i += 2) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+```
+
+# Read and display a 2D array (Row wise) 
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int r, c;
+    cout << "Enter rows and columns: ";
+    cin >> r >> c;
+
+    int mat[r][c];
+    cout << "Enter matrix elements:\n";
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cin >> mat[i][j];
+        }
+    }
+
+    cout << "Matrix is:\n";
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
 
 
