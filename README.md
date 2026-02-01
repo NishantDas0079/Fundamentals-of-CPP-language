@@ -1,7 +1,7 @@
 # 1. Basic Structure & Syntax
 # Hello World Program
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -12,7 +12,7 @@ int main() {
 ```
 
 # Program 1: Simple Input/Output
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -34,7 +34,7 @@ int main() {
 
 # 2. Variables & Data Types
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -56,7 +56,7 @@ int main() {
 ```
 
 # Program 2: Simple Calculator
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -85,7 +85,7 @@ int main() {
 
 # 3. Conditional Statements
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -113,7 +113,7 @@ int main() {
 ```
 
 # Program 3: Even or Odd Checker
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -135,7 +135,7 @@ int main() {
 
 # 4. Loops
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -161,7 +161,7 @@ int main() {
 ```
 
 # Program 4: Multiplication Table
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -181,7 +181,7 @@ int main() {
 
 # 5. Pointers
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -206,7 +206,7 @@ int main() {
 
 # Reference Variables
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -229,7 +229,7 @@ int main() {
 
 # 6. new and delete Operators
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -262,7 +262,7 @@ int main() {
 ```
 
 # Program 5: Dynamic Array
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -293,7 +293,7 @@ int main() {
 
 # 7. Classes and Objects (Encapsulation)
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -324,7 +324,7 @@ int main() {
 ```
 
 # 8. Friend Function
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -355,7 +355,7 @@ int main() {
 
 # 9. Inheritance
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -387,7 +387,7 @@ int main() {
 
 # 10. Polymorphism
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -428,7 +428,7 @@ int main() {
 
 # 11. Abstraction
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -468,7 +468,7 @@ int main() {
 
 # 12. File Handling
 
-```
+```cpp
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -501,7 +501,7 @@ int main() {
 ```
 
 # Program 8: Simple File Reader
-```
+```cpp
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -531,7 +531,7 @@ int main() {
 
 # 13. Exception Handling
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -560,7 +560,7 @@ int main() {
 ```
 
 # Program 9: Simple Age Checker with Exception
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -591,7 +591,7 @@ int main() {
 # Quick Reference Summary
 # 1. Pointers & References
 
-```
+```cpp
 int num = 10;
 int *ptr = &num;    // Pointer stores address
 int &ref = num;     // Reference is alias
@@ -601,7 +601,7 @@ cout << ref;        // Use reference
 ```
 
 # 2. Memory Operators
-```
+```cpp
 // Allocate single variable
 int *p = new int;   
 *p = 100;
