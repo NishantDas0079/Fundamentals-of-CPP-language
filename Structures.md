@@ -235,6 +235,7 @@ Member function display() shows C++ struct capabilities
 
 
 ```mermaid
+
 flowchart TD
     A[Structures in C/C++] --> B(Basics)
     A --> C(Intermediate)
