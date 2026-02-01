@@ -1,37 +1,26 @@
 ```mermaid
-flowchart TD
-    A[Structures Overview] 
-    A --> B[1. Basics]
-    A --> C[2. Arrays]
-    A --> D[3. Pointers]
-    A --> E[4. Nested]
-    A --> F[5. C vs C++]
+flowchart TB
+    A[🏗️ STRUCTURES OVERVIEW]:::main
     
-    B --> B1["struct TypeName<br/>int x, y;"]
-    B --> B2["Point p = {10,20};<br/>p.x → dot operator"]
-    B --> B3["Size: 8 bytes<br/>4+4 + padding"]
+    A --> B1["📐 1. BASICS<br/>struct Point {int x,y;};<br/>Point p={10,20};<br/>p.x → 8 bytes"]:::basics
+    A --> B2["📦 2. ARRAYS<br/>Student s[3]={{1,A},{2,B}}<br/>sizeof(s)/sizeof(s[0])=3<br/>72 bytes total"]:::arrays
+    A --> B3["🔗 3. POINTERS<br/>Node* p=malloc(sizeof)<br/>p→data=10<br/>Always free(p)"]:::pointers
+    A --> B4["📂 4. NESTED<br/>struct Date {d,m,y};<br/>struct Emp {Date join;}<br/>emp.join.d access"]:::nested
+    A --> B5["⚖️ 5. C vs C++<br/>Methods: No/Yes<br/>Constructor: No/Yes<br/>Padding: Both"]:::compare
     
-    C --> C1["struct S s[3] =<br/>{{1,'A'}, {2,'B'}}"]
-    C --> C2["Count: sizeof(s)/<br/>sizeof(s[0])"]
+    B1 --> X1["Memory: 8 bytes<br/>(4+4 int)"]
+    B2 --> X2["Memory: 72 bytes<br/>(3×24 bytes)"]
+    B3 --> X3["Dynamic Alloc<br/>16 bytes"]
+    B4 --> X4["44 bytes total<br/>w/ padding"]
+    B5 --> X5["Key Differences<br/>Table Summary"]
     
-    D --> D1["Node* p = malloc(..)"]
-    D --> D2["p→data = 10<br/>(*p).data"]
-    D --> D3["Always free(p)"]
-    
-    E --> E1["struct Date {int d,m,y};"]
-    E --> E2["struct Emp {..<br/>struct Date join; }"]
-    E --> E3["emp.join.d"]
-    
-    F --> F1["C: No methods<br/>C++: Methods OK"]
-    F --> F2["C: Manual init<br/>C++: Constructor"]
-    F --> F3["Both: Padding exists"]
-    
-    style A fill:#e3f2fd
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8 
-    style D fill:#fff3e0
-    style E fill:#e0f2f1
-    style F fill:#fce4ec
+    classDef main fill:#2196f3,stroke:#1976d2,stroke-width:4px,color:#fff,font-weight:bold,font-size:16px
+    classDef basics fill:#9c27b0,stroke:#7b1fa2,stroke-width:3px,color:#fff,font-size:14px
+    classDef arrays fill:#4caf50,stroke:#388e3c,stroke-width:3px,color:#fff,font-size:14px
+    classDef pointers fill:#ff9800,stroke:#f57c00,stroke-width:3px,color:#fff,font-size:14px
+    classDef nested fill:#00bcd4,stroke:#0097a7,stroke-width:3px,color:#fff,font-size:14px
+    classDef compare fill:#f44336,stroke:#d32f2f,stroke-width:3px,color:#fff,font-size:14px
+
 ```
 
 
