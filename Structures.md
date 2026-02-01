@@ -237,42 +237,45 @@ Member function display() shows C++ struct capabilities
 ```mermaid
 
 flowchart TD
-    A[Structures in C/C++] --> B(Basics)
-    A --> C(Intermediate)
+    A[Structures in C/C++] --> B[Basics]
+    A --> C[Intermediate]
     
-    B --> B1[Simple Declaration<br/>• Dot operator .<br/>• Aggregate init<br/>Output: Coordinates]
-    B --> B2[Structure Functions<br/>• C++ member methods<br/>• Inline calc<br/>Output: Area=50]
-    B --> B3[Array of Structures<br/>• 3 students example<br/>• Sequential access<br/>Output: Roll+Name]
+    B --> B1[Simple Declaration<br/>. operator<br/>Output: 10,20]
+    B --> B2[C++ Member Functions<br/>Inline area calc<br/>Output: Area 50]
+    B --> B3[Array of Structures<br/>3 Students<br/>Output: Roll+Name]
     
-    C --> C1[Nested Structures<br/>• Employee+Date<br/>• emp.date.day<br/>Output: John Doe 15/6/25]
-    C --> C2[Structure Pointers<br/>• malloc+free<br/>• Arrow operator -><br/>Output: Node data 42]
-    C --> C3[Self-Referential<br/>• Linked list Node<br/>• nullptr safety<br/>Output: Data 100]
+    C --> C1[Nested Structures<br/>Employee+Date<br/>Output: 15/6/2025]
+    C --> C2[Structure Pointers<br/>malloc+free<br/>Output: Node 42]
+    C --> C3[Self-Referential<br/>Linked List Node<br/>Output: Data 100]
     
-    B1 --> D[Memory: 8 bytes<br/>4+4 ints]
+    B1 --> D[Memory 8 bytes]
     B2 --> D
-    B3 --> E[Memory: 72 bytes<br/>3×24 bytes/student]
+    B3 --> E[Memory 72 bytes<br/>3x24 bytes]
     
-    C1 --> F[Memory: 46 bytes<br/>id+name+date+padding]
-    C2 --> G[Dynamic: 8 bytes<br/>malloc(sizeof)]
+    C1 --> F[Memory 44 bytes<br/>w padding]
+    C2 --> G[Dynamic 16 bytes]
     C3 --> H[Self-reference<br/>Node* next]
     
-    D --> I[Key Differences Table]
+    D --> I[C vs C++ Table]
     E --> I
     F --> I
     G --> I
     H --> I
     
-    I --> J[C vs C++<br/>Methods: No/Yes<br/>Constructors: No/Yes<br/>Pointers: (*p).m / p->m]
+    I --> J[Methods: C=No C++=Yes<br/>Constructors: No/Yes<br/>Pointers: . / ->]
     
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style B1 fill:#fff3e0
-    style B2 fill:#fff3e0
-    style B3 fill:#fff3e0
-    style C1 fill:#e0f2f1
-    style C2 fill:#e0f2f1
-    style C3 fill:#e0f2f1
+    classDef main fill:#e1f5fe,stroke:#01579b
+    classDef basics fill:#f3e5f5,stroke:#4a148c
+    classDef inter fill:#e8f5e8,stroke:#1b5e20
+    classDef ex fill:#fff3e0,stroke:#e65100
+    classDef mem fill:#e0f2f1,stroke:#00695c
+    
+    class A main
+    class B,C basics
+    class B1,B2,B3,C1,C2,C3 ex
+    class D,E,F,G,H mem
+    class I,J main
+
 ```
 
 
