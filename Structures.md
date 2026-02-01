@@ -1,3 +1,40 @@
+```mermaid
+flowchart TD
+    A[Structures Overview] 
+    A --> B[1. Basics]
+    A --> C[2. Arrays]
+    A --> D[3. Pointers]
+    A --> E[4. Nested]
+    A --> F[5. C vs C++]
+    
+    B --> B1["struct TypeName<br/>int x, y;"]
+    B --> B2["Point p = {10,20};<br/>p.x → dot operator"]
+    B --> B3["Size: 8 bytes<br/>4+4 + padding"]
+    
+    C --> C1["struct S s[3] =<br/>{{1,'A'}, {2,'B'}}"]
+    C --> C2["Count: sizeof(s)/<br/>sizeof(s[0])"]
+    
+    D --> D1["Node* p = malloc(..)"]
+    D --> D2["p→data = 10<br/>(*p).data"]
+    D --> D3["Always free(p)"]
+    
+    E --> E1["struct Date {int d,m,y};"]
+    E --> E2["struct Emp {..<br/>struct Date join; }"]
+    E --> E3["emp.join.d"]
+    
+    F --> F1["C: No methods<br/>C++: Methods OK"]
+    F --> F2["C: Manual init<br/>C++: Constructor"]
+    F --> F3["Both: Padding exists"]
+    
+    style A fill:#e3f2fd
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8 
+    style D fill:#fff3e0
+    style E fill:#e0f2f1
+    style F fill:#fce4ec
+```
+
+
 # Basics
 # 1. Simple Structure Declaration and Access (C/C++)
 
