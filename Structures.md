@@ -232,6 +232,50 @@ nullptr is modern C++ null pointer (safer than NULL)
 Member function display() shows C++ struct capabilities
 ```
 
+
+
+```mermaid
+flowchart TD
+    A[Structures in C/C++] --> B(Basics)
+    A --> C(Intermediate)
+    
+    B --> B1[Simple Declaration<br/>• Dot operator .<br/>• Aggregate init<br/>Output: Coordinates]
+    B --> B2[Structure Functions<br/>• C++ member methods<br/>• Inline calc<br/>Output: Area=50]
+    B --> B3[Array of Structures<br/>• 3 students example<br/>• Sequential access<br/>Output: Roll+Name]
+    
+    C --> C1[Nested Structures<br/>• Employee+Date<br/>• emp.date.day<br/>Output: John Doe 15/6/25]
+    C --> C2[Structure Pointers<br/>• malloc+free<br/>• Arrow operator -><br/>Output: Node data 42]
+    C --> C3[Self-Referential<br/>• Linked list Node<br/>• nullptr safety<br/>Output: Data 100]
+    
+    B1 --> D[Memory: 8 bytes<br/>4+4 ints]
+    B2 --> D
+    B3 --> E[Memory: 72 bytes<br/>3×24 bytes/student]
+    
+    C1 --> F[Memory: 46 bytes<br/>id+name+date+padding]
+    C2 --> G[Dynamic: 8 bytes<br/>malloc(sizeof)]
+    C3 --> H[Self-reference<br/>Node* next]
+    
+    D --> I[Key Differences Table]
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    
+    I --> J[C vs C++<br/>Methods: No/Yes<br/>Constructors: No/Yes<br/>Pointers: (*p).m / p->m]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style B1 fill:#fff3e0
+    style B2 fill:#fff3e0
+    style B3 fill:#fff3e0
+    style C1 fill:#e0f2f1
+    style C2 fill:#e0f2f1
+    style C3 fill:#e0f2f1
+```
+
+
+
 ```
 | Feature           | C Structures       | C++ Structures |
 | ----------------- | ------------------ | -------------- |
