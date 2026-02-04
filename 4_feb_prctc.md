@@ -310,6 +310,32 @@ Move p forward by one int
 ```
 
 
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {3, 6, 9, 12};
+    int* p = arr;
+
+    while (p <= &arr[3]) {
+        cout << *p << " ";
+        p++;
+    }
+
+    return 0;
+}
+```
+
+OUTPUT :-
+```
+3 6 9 12 
+```
+
+
+Explanantion ;
+
+
 # Structures Output Questions
 
 ```cpp
