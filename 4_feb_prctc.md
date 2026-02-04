@@ -315,6 +315,42 @@ Move p forward by one int
 using namespace std;
 
 int main() {
+    char arr[] = {'A', 'B', 'C'};
+    char* p = arr;
+
+    cout << p << endl;
+    cout << p + 1 << endl;
+
+    return 0;
+}
+```
+
+
+OUTPUT :-
+```
+B C <garbage until '\0'>
+```
+
+Explanation :-
+```
+char arr[] = {'A', 'B', 'C'};
+This creates a character array without a null terminator ('\0').
+
+char *p = arr;
+p points to the first character 'A'.
+
+cout << p << endl;
+
+When cout prints a char*, it assumes it is a C-style string and keeps printing characters until it encounters '\0'.
+```
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
     int arr[] = {3, 6, 9, 12};
     int* p = arr;
 
