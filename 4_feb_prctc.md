@@ -333,7 +333,60 @@ OUTPUT :-
 ```
 
 
-Explanantion ;
+Explanantion :-
+```
+p initially points to the first element of the array, i.e. arr[0] which is 3.
+
+*p → prints 3
+
+After printing, p++ moves the pointer to the next memory location, which corresponds to arr[1].
+
+*p → prints 6
+
+The pointer moves again to arr[2].
+
+*p → prints 9
+
+The pointer moves to arr[3].
+
+*p → prints 12
+
+When p becomes greater than &arr[3], the loop condition fails and the loop stops.
+```
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {7, 14, 21};
+
+    cout << arr[1] << endl;
+    cout << 1[arr] << endl;
+
+    return 0;
+}
+```
+
+OUTPUT :-
+```
+14
+14
+```
+
+
+Explanation :-
+```
+arr[i] ≡ *(arr + i)
+
+1[arr] ≡ *(1 + arr) ≡ *(arr + 1) ≡ arr[1]
+
+Both statements access the same memory location, so they print the same value.
+
+a[b] == b[a]
+```
 
 
 # Structures Output Questions
