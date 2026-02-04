@@ -356,3 +356,40 @@ Value: 1
 
 arr[1].y is 4
 ```
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    struct Item {
+        int price;
+    };
+
+    Item arr[] = {{1}, {3}, {5}};
+    Item* p = arr;
+
+    cout << p[2].price << endl;       // arr[2].price
+    cout << (*(p + 1)).price << endl; // arr[1].price
+
+    return 0;
+}
+```
+
+
+OUTPUT :-
+```
+5
+3
+```
+
+
+Explanation :-
+```
+| Expression         | Value |
+| ------------------ | ----- |
+| `p[2].price`       | 5     |
+| `(*(p + 1)).price` | 3     |
+```
