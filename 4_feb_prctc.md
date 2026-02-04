@@ -308,3 +308,51 @@ Move p forward by one int
 | 2         | `arr[1]`      | `2`     | `arr[2]`     |
 | 3         | `arr[2]`      | `3`     | past array   |
 ```
+
+
+# Structures Output Questions
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    struct Data {
+        int x;
+        int y;
+    };
+
+    Data arr[] = {{1,2}, {3,4}, {5,6}};
+    Data* p = arr;
+
+    cout << p->x << endl;
+    cout << (p + 1)->y << endl;
+
+    return 0;
+}
+```
+
+
+OUTPUT :-
+```
+1
+4
+```
+
+Explanation :-
+```
+arr[0] = {1, 2}
+arr[1] = {3, 4}
+arr[2] = {5, 6}
+
+cout << p->x << endl;
+
+p->x means arr[0].x
+
+Value: 1
+
+(p + 1) points to arr[1]
+
+arr[1].y is 4
+```
