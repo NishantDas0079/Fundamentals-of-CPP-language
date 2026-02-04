@@ -156,3 +156,155 @@ HRA (20%): 4000
 DA (10%): 2000
 Gross Salary: 26000
 ```
+
+
+# Array Output Questions
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int arr[] = {10, 20, 30, 40};
+    int* p = arr;
+
+    cout << *p << endl;
+    cout << *(p + 1) << endl
+	cout << *(p + 3) << endl;
+    return 0;
+}
+```
+
+OUTPUT :-
+```
+10
+20
+40
+```
+
+Explanation ;-
+```
+The array name arr represents the base address of the array.
+
+Pointer p now points to the first element of the array (arr[0]).
+
+*p dereferences the pointer.
+
+It gives the value at arr[0], which is 10.
+
+p + 1 moves the pointer to the next integer location.
+
+This points to arr[1].
+
+Value printed is 20.
+
+p + 2 points to arr[2].
+
+Value printed is 30
+```
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int arr[] = {5, 10, 15, 20};
+   int* p = arr + 2;
+
+   cout << *p << endl;
+   cout << *(p - 1) << endl;
+   return 0;
+}
+```
+
+
+OUTPUT :-
+```
+15
+10
+```
+
+Explanantion :-
+```
+Array elements with index:
+
+arr[0] = 5
+
+arr[1] = 10
+
+arr[2] = 15
+
+arr[3] = 20
+
+arr points to arr[0]
+
+arr + 2 points to arr[2]
+
+So pointer p points to the value 15
+
+p - 1 moves the pointer one position backward
+
+Now it points to arr[1]
+
+Value at arr[1] is 10
+
+Second output line → 10
+
+Key Concepts Used
+
+Pointer arithmetic
+
+arr + 2 → points to 3rd element
+
+p - 1 → moves pointer backward
+
+Dereferencing (*) gives the value stored at the address
+
+If you want to try trickier pointer outputs, pre/post increment, or array–pointer confusion questions, send the next one 👌
+```
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {1, 2, 3};
+    int* p = arr;
+
+    for (int i = 0; i < 3; i++) {
+        cout << *(p++) << " ";
+    }
+
+    return 0;
+}
+```
+
+OUTPUT :-
+```
+1 2 3
+```
+
+Explanantion :-
+```
+p++ is post-increment, so:
+
+First: dereference p
+
+Then: increment p to point to the next element
+
+So each iteration:
+
+Print the value p points to
+
+Move p forward by one int
+
+| Iteration | `p` points to | Printed | `p` moves to |
+| --------- | ------------- | ------- | ------------ |
+| 1         | `arr[0]`      | `1`     | `arr[1]`     |
+| 2         | `arr[1]`      | `2`     | `arr[2]`     |
+| 3         | `arr[2]`      | `3`     | past array   |
+```
