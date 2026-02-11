@@ -132,9 +132,11 @@ struct Node {
 };
 ```
 Functionality: This defines a simple structure for each node in the linked list.
+
 int data: Stores the value (an integer) held by the node.
+
 Node* next: A pointer to the next node in the list. For the last node, this is nullptr.
-Why a struct?: It's used here for simplicity, as it only holds data and a pointer. In C++, structs are similar to classes but default to public members.
+
 LinkedList Class
 The LinkedList class manages the list. It has a private member Node* head (initially nullptr for an empty list) and public methods for operations.
 
@@ -166,11 +168,13 @@ void insertAtBeginning(int val) {
 }
 ```
 Functionality: Adds a new node with the given value (val) at the start of the list.
+
 Allocates a new Node on the heap using new.
+
 Sets its data to val and next to the current head (so it points to the old first node).
+
 Updates head to point to the new node.
-Time Complexity: O(1) – Constant time, as it doesn't traverse the list.
-Edge Case: Works even if the list is empty (new node becomes the head).
+
 
 ```cpp
 void insertAtEnd(int val) {
@@ -191,11 +195,13 @@ void insertAtEnd(int val) {
 }
 ```
 Functionality: Adds a new node with the given value (val) at the end of the list.
+
 Allocates a new Node and sets its data to val and next to nullptr.
+
 If the list is empty (head == nullptr), sets head to the new node.
+
 Otherwise, traverses the list using a temporary pointer (temp) to find the last node (where next is nullptr), then links the new node to it.
-Time Complexity: O(n) – Linear time, as it may traverse the entire list to reach the end.
-Edge Case: Handles an empty list by making the new node the head.
+
 
 ```cpp
 void deleteNode(int val) {
@@ -255,9 +261,11 @@ void display() {
 ```
 Functionality: Prints the contents of the list to the console.
 If empty, prints a message.
+
 Otherwise, starts from head and traverses the list, printing each node's data followed by " -> ", ending with "nullptr" to indicate the end.
-Time Complexity: O(n) – Traverses the entire list.
+
 Output Format: E.g., "10 -> 20 -> 30 -> nullptr" for a list with values 10, 20, 30.
+
 Main Function
 
 ```cpp
@@ -343,16 +351,18 @@ if (size <= 0) {
 }
 ```
 Functionality: Prompts the user to input an integer for the array size. Reads it using std::cin.
+
 Includes basic validation: If the size is not positive (e.g., 0 or negative), it prints an error message and exits the program with a non-zero code (indicating failure). This prevents invalid allocations.
-Why?: Ensures the program doesn't attempt to allocate invalid memory (e.g., negative sizes could cause issues in some systems). In a real application, more robust input validation (e.g., checking for non-integer input) could be added.
+
 Dynamically Allocate Memory for the Array
 
 ```cpp
 int* arr = new int[size];
 ```
 Functionality: Allocates memory on the heap for an array of size integers using new[]. The pointer arr now points to the start of this array.
+
 new int[size] creates contiguous memory for size integers. If allocation fails (e.g., due to insufficient memory), new throws a std::bad_alloc exception (though not explicitly caught here for simplicity).
-Why Dynamic?: Unlike static arrays, this allows the size to be determined at runtime based on user input. The memory persists until explicitly freed.
+
 Allow the User to Enter the Values for the Array
 
 ```cpp
@@ -369,9 +379,11 @@ for (int i = 0; i < size; ++i) {
 std::cout << std::endl;
 ```
 Functionality: Loops through the array, prompting the user to enter a value for each element (1-based indexing in prompts for user-friendliness). Stores each input in arr[i].
+
 After input, it displays the entire array to confirm what was entered.
-Why a Loop?: Arrays are indexed from 0, so the loop iterates from 0 to size-1. This ensures all elements are populated.
+
 Edge Cases: If the user enters non-integer values, std::cin may fail (e.g., entering "abc" could leave invalid data). In production code, you'd add error checking for input streams.
+
 Free the Allocated Memory Using delete
 
 ```cpp
@@ -381,7 +393,9 @@ std::cout << "Memory has been freed." << std::endl;
 ```
 
 Functionality: Deallocates the memory allocated by new[] using delete[]. This is crucial to prevent memory leaks.
+
 delete[] must be used for arrays (not just delete), as it properly handles deallocating multiple elements.
+
 Sets arr to nullptr afterward to avoid accidental use of a dangling pointer (a pointer to freed memory).
 
 # Swapping two numbers using pointers
@@ -422,17 +436,26 @@ int main() {
 ```
 
 EXPLANATION :-
+
 Variable Declaration: int a, b; declares two integer variables to hold the user-input values.
 User Input:
 Prompts the user to enter values for a and b using std::cout.
+
 Reads the inputs into a and b using std::cin.
+
 Pointer Declaration and Assignment:
+
 int* ptrA = &a;: Declares a pointer ptrA of type int* and initializes it with the address of a (using the address-of operator &).
 int* ptrB = &b;: Similarly, declares ptrB pointing to b.
+
 Now, ptrA holds the memory address of a, and ptrB holds the address of b.
+
 Displaying Original Values: Prints the values of a and b before swapping to show the initial state.
+
 Swapping: Calls swap(ptrA, ptrB);, passing the pointers. The function modifies the values at these addresses, effectively swapping a and b.
+
 Displaying Swapped Values: Prints the values after swapping to confirm the change.
+
 Return Statement: return 0; indicates successful program execution.
 
 # Dynamically allocating memory for an array of strings (an array of pointers) and performing certain operations.
@@ -503,15 +526,18 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 Functionality: First, prompts the user for the number of strings (n) and reads it with std::cin. The std::cin.ignore() call is crucial—it discards the newline character left in the input buffer after reading n, preventing issues with subsequent std::getline calls (which would otherwise read an empty line).
+
 Allocates an array of n pointers (char** strings = new char*[n];). Each element in this array is a char* that will point to a string.
+
 In the loop, for each string:
+
 Uses std::getline(std::cin, input) to read the entire line (including spaces) into a temporary std::string called input. This is better than std::cin >> input for handling multi-word strings.
+
 Allocates memory for a C-style string: new char[input.length() + 1] (adds 1 for the null terminator \0).
+
 Copies the content from input to the allocated memory using strcpy(strings[i], input.c_str()), where c_str() returns a C-style string pointer.
+
 Stores the pointer to the allocated string in strings[i].
-Why This Approach?: std::getline ensures full lines are read. Dynamic allocation allows strings of varying lengths. The array of pointers (char**) enables indirect access to each string.
-Edge Cases: Handles empty strings (length 0, still allocates 1 byte for \0). If n is 0 or negative, the loop won't run, but no validation is added here for simplicity.
-Time Complexity: O(n * m), where n is the number of strings and m is the average string length (due to copying).
 
 ```cpp
 std::cout << "\nThe strings are:" << std::endl;
@@ -520,8 +546,8 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 Functionality: Iterates through the array of pointers (strings), dereferencing each char* to print the string it points to. std::cout << strings[i] treats strings[i] as a C-string and outputs it until the null terminator.
+
 Adds a newline after each string for readability.
-Why Array of Pointers?: Demonstrates accessing strings indirectly via pointers, as required.
 
 ```cpp
 for (int i = 0; i < n; ++i) {
@@ -533,8 +559,11 @@ strings = nullptr;  // Set to nullptr to avoid dangling pointer
 std::cout << "\nMemory has been freed." << std::endl;
 ```
 Functionality: Properly deallocates all dynamically allocated memory to prevent memory leaks.
+
 First loop: For each string, uses delete[] strings[i] to free the memory allocated for that C-string (since new char[] was used).
+
 Then, delete[] strings frees the array of pointers itself.
+
 Sets strings = nullptr to prevent accidental access to freed memory (a dangling pointer).
 
 # Demonstrating the use of a pointer to a constant variable and performing certain operations.
@@ -570,21 +599,31 @@ int main() {
 ```
 
 EXPLANATION :-
+
 Declaration of Constant Variable:
+
 const int constantVar = 42;: Creates an integer constant initialized to 42. Its value cannot be changed directly (e.g., constantVar = 50; would be invalid).
+
 Declaration of Pointer to Constant:
+
 const int* ptr = &constantVar;: Declares ptr as a pointer to a constant integer. It points to constantVar. The const applies to the type being pointed to, meaning you can't modify what ptr points to.
-Syntax Note: const int* means "pointer to a constant int." You could also write int const* ptr; for the same effect.
+
 Reading the Value:
+
 std::cout << "Value of constantVar through pointer: " << *ptr << std::endl;: Dereferences ptr to access and print the value (42). This is allowed because reading doesn't modify the constant.
+
 Attempted Modification (Commented Out):
 // *ptr = 50;: This line is commented to prevent a compile error. If uncommented, the compiler would reject it with an error like "assignment of read-only location '*ptr'" because ptr points to a constant.
+
 This demonstrates the restriction: You can read but not write through a pointer to a constant.
+
 Reassigning the Pointer:
+
 int anotherVar = 100;: Declares a non-constant integer.
+
 ptr = &anotherVar;: Reassigns ptr to point to anotherVar. This is valid because the pointer itself is not constant (only what it points to is constant).
 std::cout << "Value of anotherVar through pointer: " << *ptr << std::endl;: Prints 100, showing the pointer now points to a different variable.
-Another commented attempt: // *ptr = 200;: Even with a non-constant variable, you can't modify through ptr because it's a pointer to a constant.
+
 Return Statement: return 0; indicates successful execution.
 
 # Writing a C++ program where a function returns a reference to a local variable.
@@ -613,22 +652,30 @@ Potential Problems with Returning a Reference to a Local Variable
 Returning a reference to a local variable in C++ is highly problematic and leads to undefined behavior. Here's why and how to avoid it:
 
 Problems:
+
 Lifetime of Local Variables: Local variables (e.g., localVar in getLocalReference()) are allocated on the stack and are destroyed when the function returns. The reference (ref in main()) becomes a "dangling reference" pointing to invalid memory.
+
 Undefined Behavior: Accessing or modifying through such a reference can result in:
+
 Printing garbage values.
-Program crashes (e.g., segmentation faults).
-Memory corruption, leading to unpredictable bugs.
+
 In some cases, it might "work" temporarily (e.g., if the stack space isn't overwritten yet), but this is unreliable and not guaranteed.
+
 No Compile-Time Error: C++ compilers often don't catch this, making it a runtime issue that's hard to debug.
+
 Security Risks: In larger programs, this could lead to vulnerabilities if the corrupted memory is accessed elsewhere.
+
 How to Avoid These Problems:
+
 Don't Return References to Locals: Simply avoid this pattern. If you need to return a value, return by value (e.g., int getValue() { int x = 42; return x; }).
+
 Use Static or Global Variables: As shown in the safe version below, declare the variable as static (inside the function) or global (outside). These persist beyond the function's scope.
+
 Return Pointers Carefully: If using pointers, ensure the pointed-to memory outlives the function (e.g., dynamically allocated with new, but remember to delete later).
+
 Use Smart Pointers or References to Globals/Statics: For complex cases, consider std::shared_ptr or references to persistent objects.
-Best Practice: Prefer returning by value for simple types. For large objects, consider move semantics or references to existing objects.
-Safe Version: Function Returning a Reference to a Static Variable
-Here's a corrected version where the function returns a reference to a static variable (declared inside the function). Static variables have static storage duration, meaning they persist for the entire program lifetime and are initialized only once. This avoids the dangling reference issue.
+
+Here's a corrected version where the function returns a reference to a static variable (declared inside the function).
 
 ```cpp
 #include <iostream>
@@ -656,11 +703,18 @@ int main() {
 ```
 
 Explanation of the Safe Version
+
 Static Variable Declaration: static int staticVar = 42; inside getStaticReference(). This variable is created once when the function is first called and retains its value across multiple calls. It's not destroyed when the function exits.
+
 Returning the Reference: return staticVar; is safe because staticVar outlives the function.
+
 Usage in main():
+
 int& ref = getStaticReference();: Gets a reference to the static variable.
+
 Reading and modifying through ref works correctly, as it directly affects staticVar.
+
 Subsequent calls (e.g., ref2) reference the same variable, demonstrating persistence.
+
 Advantages: No undefined behavior, and it's thread-safe in this simple case (though statics can have concurrency issues in multi-threaded programs).
-Alternative with Global Variable: You could declare staticVar outside any function (as a global).
+
