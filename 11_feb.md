@@ -157,6 +157,7 @@ LinkedList() {
 }
 ```
 Constructor (LinkedList()): Initializes an empty list by setting head to nullptr.
+
 Destructor (~LinkedList()): Automatically called when the LinkedList object is destroyed (e.g., at the end of main). It traverses the list, deleting each node to free memory and prevent leaks. This is crucial for dynamic allocation.
 
 ```cpp
@@ -236,13 +237,16 @@ void deleteNode(int val) {
 }
 ```
 Functionality: Removes the first node containing the specified value (val).
+
 Checks if the list is empty and prints a message if so.
+
 Special case: If the head node matches val, updates head to the next node and deletes the old head.
+
 Otherwise, uses two pointers (current and prev) to traverse the list until finding the node with val.
+
 If found, links the previous node to the next one (skipping the current node) and deletes it.
+
 If not found, prints a message.
-Time Complexity: O(n) – May traverse the entire list.
-Edge Cases: Handles empty list, deletion of head, and non-existent values. Note: This deletes only the first occurrence; for multiple same values, it wouldn't remove all.
 
 ```cpp
 void display() {
