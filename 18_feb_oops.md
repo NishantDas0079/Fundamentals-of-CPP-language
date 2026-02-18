@@ -884,6 +884,23 @@ int main() {
 }
 ```
 
+INPUT/OUTPUT :-
+```
+Deposited $500.00 on 2023-10-01. New balance: $1500.00
+Withdrew $200.00 on 2023-10-02. New balance: $1300.00
+Insufficient balance. Cannot withdraw $600.00.
+Deposited $1000.00 on 2023-10-04. New balance: $3000.00
+Account 1001 (Alice) Balance: $1300.00
+Account 1002 (Bob) Balance: $500.00
+Account 1003 (Charlie) Balance: $3000.00
+Transaction History for Alice (Account 1001):
+Deposit $500.00 on 2023-10-01
+Withdraw $200.00 on 2023-10-02
+Found account: Bob
+Transaction History for Bob (Account 1002):
+No transactions for account 1002.
+```
+
 
 # Student Class with Dynamic Course Registration
 
@@ -1044,6 +1061,11 @@ int main() {
     return 0;
 }
 ```
+
+INPUT/OUTPUT :-
+```
+
+-
 
 
 # DirectoryTree Class with DirNode Tree
