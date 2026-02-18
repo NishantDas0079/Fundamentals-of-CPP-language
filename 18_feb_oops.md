@@ -51,6 +51,35 @@ int main() {
     return 0;
 }
 ```
+INPUT/OUTPUT :-
+```
+Enter details for Student 1:
+Enter name: Alice
+Enter roll number: 101
+Enter marks: 85
+Enter details for Student 2:
+Enter name: Bob
+Enter roll number: 102
+Enter marks: 92
+Enter details for Student 3:
+Enter name: Charlie
+Enter roll number: 103
+Enter marks: 78
+
+Displaying student details:
+Name: Alice
+Roll Number: 101
+Marks: 85
+-------------------
+Name: Bob
+Roll Number: 102
+Marks: 92
+-------------------
+Name: Charlie
+Roll Number: 103
+Marks: 78
+-------------------
+```
 
 
 # Creating a BankAccount Class with Constructor and Destructor.
@@ -89,6 +118,17 @@ int main() {
     std::cout << "Back in main. Program ending." << std::endl;
     return 0;
 }
+```
+
+INPUT/OUTPUT :-
+```
+Calling createAccounts function:
+Account 12345 created with balance $1000.00
+Account 67890 created with balance $2500.00
+Inside createAccounts function.
+Destructor called for account 67890
+Destructor called for account 12345
+Back in main. Program ending.
 ```
 
 
@@ -150,6 +190,21 @@ int main() {
 }
 ```
 
+INPUT/OUTPUT :-
+```
+Employee 1:
+Name: Alice
+Salary: $50000.00
+
+Employee 2:
+Name: Bob
+Salary: $0.00
+
+After updating Employee 2's salary:
+Name: Bob
+Salary: $45000.00
+```
+
 
 # Creating a class Calculator and using method overloading.
 
@@ -196,6 +251,14 @@ int main() {
 
     return 0;
 }
+```
+
+INPUT/OUTPUT :-
+```
+add(5, 3) = 8
+add(5.5, 3.2) = 8.7
+add(1, 2, 3) = 6
+add(1.1, 2.2, 3.3) = 6.6
 ```
 
 
@@ -326,6 +389,48 @@ int main() {
 }
 ```
 
+INPUT/OUTPUT :-
+```
+Enter number of students: 2
+
+Enter details for Student 1:
+Roll: 101
+Name: Alice
+Number of subjects: 2
+Enter subject 1 name: Math
+Enter marks for Math: 90
+Enter subject 2 name: Science
+Enter marks for Science: 85
+
+Enter details for Student 2:
+Roll: 102
+Name: Bob
+Number of subjects: 2
+Enter subject 1 name: Math
+Enter marks for Math: 80
+Enter subject 2 name: Science
+Enter marks for Science: 95
+
+Displaying all students:
+Roll: 101
+Name: Alice
+Subjects:
+  Math: 90
+  Science: 85
+Total Marks: 175
+Grade: A
+-------------------
+Roll: 102
+Name: Bob
+Subjects:
+  Math: 80
+  Science: 95
+Total Marks: 175
+Grade: A
+-------------------
+Topper: Alice with total marks 175
+```
+
 
 # PatientQueue Class with Priority Enqueue
 
@@ -433,6 +538,44 @@ int main() {
     // Destructor will clean up remaining nodes when queue goes out of scope
     return 0;
 }
+```
+
+INPUT/OUTPUT :-
+```
+Enqueued: Alice (ID: 1, Severity: 5)
+Enqueued: Bob (ID: 2, Severity: 3)
+Enqueued: Charlie (ID: 3, Severity: 7)
+Enqueued: Diana (ID: 4, Severity: 4)
+
+After enqueues:
+Patient Queue (from highest to lowest priority):
+ID: 3, Name: Charlie, Severity: 7
+ID: 1, Name: Alice, Severity: 5
+ID: 4, Name: Diana, Severity: 4
+ID: 2, Name: Bob, Severity: 3
+
+Dequeue operations:
+Dequeued: Charlie (ID: 3, Severity: 7)
+Patient Queue (from highest to lowest priority):
+ID: 1, Name: Alice, Severity: 5
+ID: 4, Name: Diana, Severity: 4
+ID: 2, Name: Bob, Severity: 3
+
+Dequeued: Alice (ID: 1, Severity: 5)
+Patient Queue (from highest to lowest priority):
+ID: 4, Name: Diana, Severity: 4
+ID: 2, Name: Bob, Severity: 3
+
+After adding Eve:
+Patient Queue (from highest to lowest priority):
+ID: 5, Name: Eve, Severity: 6
+ID: 4, Name: Diana, Severity: 4
+ID: 2, Name: Bob, Severity: 3
+
+Dequeued: Eve (ID: 5, Severity: 6)
+Patient Queue (from highest to lowest priority):
+ID: 4, Name: Diana, Severity: 4
+ID: 2, Name: Bob, Severity: 3
 ```
 
 
@@ -576,6 +719,27 @@ int main() {
     // Destructor will clean up memory
     return 0;
 }
+```
+
+INPUT/OUTPUT :-
+```
+Book added: 1984
+Book added: To Kill a Mockingbird
+Book added: The Great Gatsby
+Library Books:
+ID: 1, Title: 1984, Author: George Orwell, Issued: No
+ID: 2, Title: To Kill a Mockingbird, Author: Harper Lee, Issued: No
+ID: 3, Title: The Great Gatsby, Author: F. Scott Fitzgerald, Issued: No
+Book issued: 1984
+Book already issued: 1984
+Book returned: 1984
+Book was not issued: 1984
+Book found - ID: 1, Title: 1984, Author: George Orwell, Issued: No
+Book with title 'Nonexistent Book' not found.
+Library Books:
+ID: 1, Title: 1984, Author: George Orwell, Issued: No
+ID: 2, Title: To Kill a Mockingbird, Author: Harper Lee, Issued: No
+ID: 3, Title: The Great Gatsby, Author: F. Scott Fitzgerald, Issued: No
 ```
 
 
