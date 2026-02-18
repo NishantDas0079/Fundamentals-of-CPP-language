@@ -1064,81 +1064,69 @@ int main() {
 
 INPUT/OUTPUT :-
 ```
+Enter number of students: Enter roll and name for Student 1: Enter number of courses to register for Alice: Enter course code: Enter course name: Enter credits: Enter course code: Enter course name: Enter credits: Enter roll and name for Student 2: Enter number of courses to register for Bob: Enter course code: Enter course name: Enter credits: 
+All Students:
+Alice's courses:
+  CS101 - Intro to CS (3 credits)
+  MATH101 - Calculus (4 credits)
+Total Credits: 7
+-------------------
+Bob's courses:
+  CS101 - Intro to CS (3 credits)
+Total Credits: 3
+-------------------
+Enter course code to list registered students: Students registered in CS101:
+  Alice (Roll: 1)
+  Bob (Roll: 2)
+```
 
--
 
-
-# DirectoryTree Class with DirNode Tree
+# Directory Tree Implementation
 
 ```cpp
 #include <iostream>
-#include <string>
 #include <vector>
 #include <sstream>
+#include <string>
 
 struct DirNode {
     std::string name;
     bool isFile;
-    DirNode* child;    // First child (subfolder or file)
-    DirNode* sibling;  // Next sibling
+    DirNode* child;
+    DirNode* sibling;
 };
 
 class DirectoryTree {
 private:
     DirNode* root;
 
-    // Helper: Split path into tokens (e.g., "/a/b/c" -> ["a", "b", "c"])
-    std::vector<std::string> splitPath(const std::string& path) {
-        std::vector<std::string> tokens;
+    std::vector<std::string> splitPath(std::string path) {
+        std::vector<std::string> parts;
         std::stringstream ss(path);
         std::string token;
         while (std::getline(ss, token, '/')) {
-            if (!token.empty()) tokens.push_back(token);
+            if (!token.empty()) parts.push_back(token);
         }
-        return tokens;
+        return parts;
     }
 
-    // Helper: Find or create a node in the tree
-    DirNode* findOrCreateNode(DirNode* current, const std::vector<std::string>& path, int index, bool isFile) {
-        if (index == path.size()) return current;
-        std::string name = path[index];
-        DirNode* node = current->child;
-        DirNode* prev = nullptr;
-        while (node) {
-            if (node->name == name) {
-                if (index == path.size() - 1 && node->isFile != isFile) {
-                    std::cout << "Conflict: " << name << " exists as " << (node->isFile ? "file" : "folder") << std::endl;
-                    return nullptr;
+    DirNode* findNode(std::string path) {
+        auto parts = splitPath(path);
+        DirNode* current = root;
+        for (auto& part : parts) {
+            DirNode* child = current->child;
+            while (child) {
+                if (child->name == part) {
+                    current = child;
+                    break;
                 }
-                return findOrCreateNode(node, path, index + 1, isFile);
+                child = child->sibling;
             }
-            prev = node;
-            node = node->sibling;
+            if (!child) return nullptr;
         }
-        // Create new node
-        DirNode* newNode = new DirNode{name, (index == path.size() - 1) ? isFile : false, nullptr, nullptr};
-        if (prev) {
-            prev->sibling = newNode;
-        } else {
-            current->child = newNode;
-        }
-        return findOrCreateNode(newNode, path, index + 1, isFile);
+        return current;
     }
 
-    // Helper: Find a node
-    DirNode* findNode(DirNode* current, const std::vector<std::string>& path, int index) {
-        if (index == path.size()) return current;
-        DirNode* node = current->child;
-        while (node) {
-            if (node->name == path[index]) {
-                return findNode(node, path, index + 1);
-            }
-            node = node->sibling;
-        }
-        return nullptr;
-    }
-
-    // Helper: Delete a subtree
     void deleteSubtree(DirNode* node) {
         if (!node) return;
         deleteSubtree(node->child);
@@ -1146,125 +1134,166 @@ private:
         delete node;
     }
 
-    // Helper: Recursive destructor helper
-    void destroyTree(DirNode* node) {
-        if (!node) return;
-        destroyTree(node->child);
-        destroyTree(node->sibling);
-        delete node;
-    }
-
 public:
-    // Constructor: Root is a dummy node
     DirectoryTree() {
-        root = new DirNode{"root", false, nullptr, nullptr};
+        root = new DirNode{"/", false, nullptr, nullptr};
     }
 
-    // Destructor: Frees the entire tree
     ~DirectoryTree() {
-        destroyTree(root);
+        deleteSubtree(root);
     }
 
-    // Create folder
-    void createFolder(const std::string& path) {
-        std::vector<std::string> tokens = splitPath(path);
-        if (tokens.empty()) return;
-        findOrCreateNode(root, tokens, 0, false);
-        std::cout << "Folder created: " << path << std::endl;
+    void createFolder(std::string path) {
+        auto parts = splitPath(path);
+        DirNode* current = root;
+        for (auto& part : parts) {
+            DirNode* child = current->child;
+            DirNode* prev = nullptr;
+            while (child) {
+                if (child->name == part) {
+                    if (child->isFile) {
+                        std::cout << "Cannot create folder: file exists at " << part << std::endl;
+                        return;
+                    }
+                    current = child;
+                    break;
+                }
+                prev = child;
+                child = child->sibling;
+            }
+            if (!child) {
+                DirNode* newNode = new DirNode{part, false, nullptr, nullptr};
+                if (prev) {
+                    prev->sibling = newNode;
+                } else {
+                    current->child = newNode;
+                }
+                current = newNode;
+            }
+        }
     }
 
-    // Create file
-    void createFile(const std::string& path) {
-        std::vector<std::string> tokens = splitPath(path);
-        if (tokens.empty()) return;
-        findOrCreateNode(root, tokens, 0, true);
-        std::cout << "File created: " << path << std::endl;
+    void createFile(std::string path) {
+        auto parts = splitPath(path);
+        if (parts.empty()) {
+            std::cout << "Invalid path for file" << std::endl;
+            return;
+        }
+        std::string fileName = parts.back();
+        parts.pop_back();
+        std::string dirPath = "/";
+        for (size_t i = 0; i < parts.size(); ++i) {
+            dirPath += parts[i];
+            if (i < parts.size() - 1) dirPath += "/";
+        }
+        DirNode* parent = findNode(dirPath);
+        if (!parent || parent->isFile) {
+            std::cout << "Invalid parent path" << std::endl;
+            return;
+        }
+        DirNode* child = parent->child;
+        while (child) {
+            if (child->name == fileName) {
+                if (!child->isFile) {
+                    std::cout << "Folder exists with that name" << std::endl;
+                } else {
+                    std::cout << "File already exists" << std::endl;
+                }
+                return;
+            }
+            child = child->sibling;
+        }
+        DirNode* newFile = new DirNode{fileName, true, nullptr, nullptr};
+        if (!parent->child) {
+            parent->child = newFile;
+        } else {
+            child = parent->child;
+            while (child->sibling) child = child->sibling;
+            child->sibling = newFile;
+        }
     }
 
-    // List contents of a path
-    void list(const std::string& path) {
-        std::vector<std::string> tokens = splitPath(path);
-        DirNode* dir = findNode(root, tokens, 0);
-        if (!dir || dir->isFile) {
-            std::cout << "Directory not found: " << path << std::endl;
+    void list(std::string path) {
+        DirNode* node = findNode(path);
+        if (!node) {
+            std::cout << "Path not found" << std::endl;
+            return;
+        }
+        if (node->isFile) {
+            std::cout << node->name << " (file)" << std::endl;
             return;
         }
         std::cout << "Contents of " << path << ":" << std::endl;
-        DirNode* child = dir->child;
-        if (!child) {
-            std::cout << "  (empty)" << std::endl;
-            return;
-        }
+        DirNode* child = node->child;
         while (child) {
-            std::cout << "  " << (child->isFile ? "File: " : "Folder: ") << child->name << std::endl;
+            std::cout << (child->isFile ? "File: " : "Folder: ") << child->name << std::endl;
             child = child->sibling;
         }
     }
 
-    // Delete a node and its subtree
-    void deleteNode(const std::string& path) {
-        std::vector<std::string> tokens = splitPath(path);
-        if (tokens.empty()) return;
-        DirNode* parent = root;
-        int index = 0;
-        while (index < tokens.size() - 1) {
-            DirNode* node = parent->child;
-            DirNode* prev = nullptr;
-            while (node) {
-                if (node->name == tokens[index]) {
-                    parent = node;
-                    break;
-                }
-                prev = node;
-                node = node->sibling;
-            }
-            if (!node) {
-                std::cout << "Path not found: " << path << std::endl;
-                return;
-            }
-            ++index;
+    void deleteNode(std::string path) {
+        auto parts = splitPath(path);
+        if (parts.empty()) {
+            std::cout << "Cannot delete root" << std::endl;
+            return;
         }
-        // Now delete the target node
-        DirNode* target = parent->child;
+        std::string name = parts.back();
+        parts.pop_back();
+        std::string parentPath = "/";
+        for (size_t i = 0; i < parts.size(); ++i) {
+            parentPath += parts[i];
+            if (i < parts.size() - 1) parentPath += "/";
+        }
+        DirNode* parent = findNode(parentPath);
+        if (!parent || parent->isFile) {
+            std::cout << "Invalid parent path" << std::endl;
+            return;
+        }
+        DirNode* child = parent->child;
         DirNode* prev = nullptr;
-        while (target) {
-            if (target->name == tokens.back()) {
+        while (child) {
+            if (child->name == name) {
                 if (prev) {
-                    prev->sibling = target->sibling;
+                    prev->sibling = child->sibling;
                 } else {
-                    parent->child = target->sibling;
+                    parent->child = child->sibling;
                 }
-                deleteSubtree(target);
-                std::cout << "Deleted: " << path << std::endl;
+                deleteSubtree(child);
+                std::cout << "Deleted " << path << std::endl;
                 return;
             }
-            prev = target;
-            target = target->sibling;
+            prev = child;
+            child = child->sibling;
         }
-        std::cout << "Node not found: " << path << std::endl;
+        std::cout << "Node not found" << std::endl;
     }
 };
 
 int main() {
-    DirectoryTree tree;
+    DirectoryTree dt;
 
-    // Create folders and files
-    tree.createFolder("/docs");
-    tree.createFolder("/docs/reports");
-    tree.createFile("/docs/notes.txt");
-    tree.createFile("/docs/reports/annual.pdf");
+    // Sample operations
+    dt.createFolder("/a");
+    dt.createFolder("/a/b");
+    dt.createFile("/a/b/file1.txt");
+    dt.createFile("/a/file2.txt");
+    dt.list("/a");
+    dt.list("/a/b");
+    dt.deleteNode("/a/b/file1.txt");
+    dt.list("/a/b");
 
-    // List
-    tree.list("/");
-    tree.list("/docs");
-    tree.list("/docs/reports");
-
-    // Delete
-    tree.deleteNode("/docs/notes.txt");
-    tree.list("/docs");
-
-    // Destructor cleans up
     return 0;
 }
+```
+
+INPUT/OUTPUT :-
+```
+Contents of /a:
+Folder: b
+File: file2.txt
+Contents of /a/b:
+File: file1.txt
+Deleted /a/b/file1.txt
+Contents of /a/b:
 ```
 
